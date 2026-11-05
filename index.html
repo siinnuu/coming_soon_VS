@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title>VISUALWOXX — Visual That Speaks Louder | Coming Soon</title>
+  <meta name="description" content="VisualWoxx is a creative media and design agency. The creative world is about to get louder. From bold ideas to powerful visuals, something exciting is in the making.">
+  <meta name="keywords" content="VisualWoxx, creative agency, design studio, media, branding, visual identity, coming soon">
+  <meta name="theme-color" content="#000000">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="VISUALWOXX — Visual That Speaks Louder">
+  <meta property="og:description" content="The creative world is about to get louder. A new creative chapter is loading.">
+  <meta property="og:site_name" content="VISUALWOXX">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  
+  <!-- Fonts: Clash Display via Fontshare + Modern Fallbacks -->
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600,700&display=swap">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Ambient Gradient Background Layers -->
+  <div class="ambient-glow ambient-glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow ambient-glow-2" aria-hidden="true"></div>
+  <div class="ambient-glow ambient-glow-center" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <!-- 3D Canvas Container -->
+  <canvas id="webgl-canvas" class="webgl-canvas" aria-hidden="true"></canvas>
+
+  <!-- Interactive Parallax Floating Elements Layer (Works in tandem with WebGL) -->
+  <div class="floating-elements-layer" aria-hidden="true">
+    <!-- Top Left Floating Element: Glossy Magenta Torus -->
+    <div class="float-item float-item-1" data-speed="1.2">
+      <div class="shape-glow"></div>
+      <svg class="abstract-shape shape-torus" viewBox="0 0 100 100" fill="none">
+        <defs>
+          <radialGradient id="torusGrad" cx="35%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#FF77FF"/>
+            <stop offset="40%" stop-color="#EA00FF"/>
+            <stop offset="85%" stop-color="#7B008C"/>
+            <stop offset="100%" stop-color="#22002A"/>
+          </radialGradient>
+          <filter id="glowDrop" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#EA00FF" flood-opacity="0.35"/>
+          </filter>
+        </defs>
+        <path d="M 50 15 C 30.67 15 15 30.67 15 50 C 15 69.33 30.67 85 50 85 C 69.33 85 85 69.33 85 50 C 85 30.67 69.33 15 50 15 Z M 50 32 C 59.94 32 68 40.06 68 50 C 68 59.94 59.94 68 50 68 C 40.06 68 32 59.94 32 50 C 32 40.06 40.06 32 50 32 Z" fill="url(#torusGrad)" filter="url(#glowDrop)"/>
+        <ellipse cx="42" cy="24" rx="12" ry="5" fill="#FFFFFF" opacity="0.45" transform="rotate(-15 42 24)"/>
+      </svg>
+    </div>
+
+    <!-- Top Right Floating Element: Prismatic Chrome Tetrahedron -->
+    <div class="float-item float-item-2" data-speed="-1.5">
+      <div class="shape-glow shape-glow-sm"></div>
+      <svg class="abstract-shape shape-prism" viewBox="0 0 90 90" fill="none">
+        <defs>
+          <linearGradient id="prismEdge1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+            <stop offset="60%" stop-color="#EA00FF" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#1A0222" stop-opacity="0.9"/>
+          </linearGradient>
+          <linearGradient id="prismEdge2" x1="1" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#EA00FF" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#050508" stop-opacity="0.95"/>
+          </linearGradient>
+        </defs>
+        <polygon points="45,10 82,75 8,75" fill="url(#prismEdge2)" stroke="rgba(234, 0, 255, 0.4)" stroke-width="1.5"/>
+        <polygon points="45,10 45,75 8,75" fill="url(#prismEdge1)" opacity="0.75"/>
+        <line x1="45" y1="10" x2="45" y2="75" stroke="#FFFFFF" stroke-width="1.5" opacity="0.6"/>
+      </svg>
+    </div>
+
+    <!-- Bottom Left Floating Element: Wavy Magenta Helix Ribbon -->
+    <div class="float-item float-item-3" data-speed="1.8">
+      <svg class="abstract-shape shape-ribbon" viewBox="0 0 110 90" fill="none">
+        <defs>
+          <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="35%" stop-color="#EA00FF"/>
+            <stop offset="70%" stop-color="#B200CC"/>
+            <stop offset="100%" stop-color="#3D0047"/>
+          </linearGradient>
+        </defs>
+        <path d="M 12 70 C 25 35, 45 30, 58 55 C 70 80, 90 65, 98 25" stroke="url(#ribbonGrad)" stroke-width="14" stroke-linecap="round" fill="none" filter="drop-shadow(0 8px 18px rgba(234,0,255,0.4))"/>
+        <path d="M 14 68 C 26 36, 44 32, 57 56" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+      </svg>
+    </div>
+
+    <!-- Bottom Right Floating Element: Glossy Faceted Gem Sphere -->
+    <div class="float-item float-item-4" data-speed="-1.2">
+      <div class="shape-glow shape-glow-lg"></div>
+      <svg class="abstract-shape shape-sphere" viewBox="0 0 85 85" fill="none">
+        <defs>
+          <radialGradient id="sphereGrad" cx="35%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="#FFB3FF"/>
+            <stop offset="30%" stop-color="#EA00FF"/>
+            <stop offset="70%" stop-color="#550066"/>
+            <stop offset="100%" stop-color="#0E0014"/>
+          </radialGradient>
+        </defs>
+        <circle cx="42.5" cy="42.5" r="38" fill="url(#sphereGrad)" filter="drop-shadow(0 10px 25px rgba(234,0,255,0.45))"/>
+        <ellipse cx="32" cy="24" rx="14" ry="7" fill="#FFFFFF" opacity="0.5" transform="rotate(-25 32 24)"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Main Viewport Layout Wrapper -->
+  <div class="app-viewport">
+    
+    <!-- Hero Stage: Logo Directly Paired with the Card -->
+    <main class="hero-stage">
+      
+      <!-- Centralized Brand Logo (Positioned Right Near the Box) -->
+      <header class="stage-brand-header">
+        <a href="#" class="brand-logo" aria-label="VisualWoxx Home">
+          <div class="logo-img-wrapper">
+            <img src="assets/logo.png" alt="VisualWoxx Logo" class="brand-logo-img">
+          </div>
+          <div class="logo-text-group">
+            <span class="logo-title">VISUALWOXX</span>
+            <span class="logo-subtitle">CREATIVE STUDIO</span>
+          </div>
+        </a>
+      </header>
+
+      <!-- Stage Card Composition -->
+      <div class="stage-card">
+        
+        <!-- Subtle Top Notch Indicator inspired by reference composition -->
+        <div class="stage-notch-accent" aria-hidden="true">
+          <div class="notch-line"></div>
+        </div>
+
+        <!-- Main Hero Card Content -->
+        <div class="hero-content">
+          
+          <!-- Small Pre-heading -->
+          <div class="hero-kicker-wrapper">
+            <span class="hero-kicker">WE'RE BUILDING SOMETHING DIFFERENT.</span>
+          </div>
+
+          <!-- Main Headline with Gradient Word Highlight -->
+          <h1 class="hero-headline">
+            THE CREATIVE WORLD IS ABOUT TO <span class="highlight-louder">GET LOUDER.</span>
+          </h1>
+
+          <!-- Headline Ambient Glow Halo -->
+          <div class="headline-glow" aria-hidden="true"></div>
+
+          <!-- Interactive Subscription Section -->
+          <div class="cta-form-container">
+            <form id="notify-form" class="notify-form" novalidate>
+              <div class="input-glow-border">
+                <div class="input-inner-wrapper">
+                  <div class="input-icon-left" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75">
+                      <rect x="2" y="4" width="16" height="12" rx="3" stroke-linecap="round"/>
+                      <path d="M2 7L10 12L18 7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  
+                  <input 
+                    type="email" 
+                    id="email-input" 
+                    class="email-input" 
+                    placeholder="Enter your email address..." 
+                    autocomplete="email"
+                    required
+                    aria-label="Email address for launch notification"
+                    aria-describedby="form-feedback"
+                  >
+
+                  <button type="submit" id="submit-btn" class="cta-button">
+                    <span class="btn-text">GET NOTIFIED</span>
+                    <span class="btn-icon" aria-hidden="true">
+                      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 10h12M11 5l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span class="btn-loader" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Form Validation Feedback Message -->
+              <div id="form-feedback" class="form-feedback" role="alert" aria-live="polite"></div>
+            </form>
+
+            <!-- Success State Banner (Smoothly shown upon confirmation) -->
+            <div id="success-banner" class="success-banner" role="status" aria-hidden="true">
+              <div class="success-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div class="success-text-group">
+                <h3 class="success-title">YOU'RE ON THE LIST.</h3>
+                <p class="success-desc">We'll invite you first when VISUALWOXX launches.</p>
+              </div>
+              <button id="reset-form-btn" class="reset-link" type="button">Subscribe another email</button>
+            </div>
+          </div>
+
+          <!-- Sub-button Tagline -->
+          <div class="sub-cta-wrapper">
+            <span class="sub-cta-tagline">COMING SOON. STAY CREATIVE.</span>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Social Media Section & Footer -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        
+        <!-- Left: Agency Tagline -->
+        <div class="footer-tagline">
+          <span>VISUAL THAT SPEAKS LOUDER.</span>
+        </div>
+
+        <!-- Center: Minimal Social Media Links -->
+        <nav class="social-nav" aria-label="Social Media Links">
+          <ul class="social-list">
+            <li>
+              <a 
+                href="https://www.instagram.com/visualwoxx" 
+                class="social-link" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Follow VisualWoxx on Instagram"
+                data-tooltip="Instagram"
+              >
+                <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                <span class="sr-only">Instagram</span>
+              </a>
+            </li>
+
+            <li>
+              <a 
+                href="https://www.linkedin.com/company/visualwoxx" 
+                class="social-link" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Connect with VisualWoxx on LinkedIn"
+                data-tooltip="LinkedIn"
+              >
+                <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+                <span class="sr-only">LinkedIn</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Right: Copyright & Edition -->
+        <div class="footer-copyright">
+          <span>&copy; <span id="current-year">2026</span> VISUALWOXX.</span>
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Interactive Custom Cursor Glow for Desktop -->
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+  <!-- Scripts -->
+  <!-- Three.js from cdnjs with fallback handling -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/three-scene.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
