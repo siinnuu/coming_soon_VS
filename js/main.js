@@ -105,7 +105,7 @@
     }
   }
 
-  // Developer utility exposed to console for reviewing registered subscribers
+  // Developer utilities exposed to console for reviewing & exporting subscribers
   window.getVisualWoxxSubscribers = function () {
     try {
       const subs = JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEY) || '[]');
@@ -113,6 +113,44 @@
       return subs;
     } catch (e) {
       return [];
+    }
+  };
+
+  // Get comma-separated string of all emails (ready to paste directly into Gmail BCC)
+  window.getSubscriberEmails = function () {
+    try {
+      const subs = JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEY) || '[]');
+      const list = subs.map(s => s.email).join(', ');
+      console.log('--- SUBSCRIBER EMAILS (COPY & PASTE TO BCC) ---');
+      console.log(list);
+      return list;
+    } catch (e) {
+      return '';
+    }
+  };
+
+  // Download all subscribers as a CSV file (ready for Mailchimp, Brevo, or Excel)
+  window.exportSubscribersCSV = function () {
+    try {
+      const subs = JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEY) || '[]');
+      if (subs.length === 0) {
+        console.warn('No subscribers found yet to export.');
+        return;
+      }
+      let csvContent = 'data:text/csv;charset=utf-8,Email,Timestamp\n';
+      subs.forEach(s => {
+        csvContent += `"${s.email}","${s.timestamp}"\n`;
+      });
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', 'visualwoxx_subscribers.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      console.log('visualwoxx_subscribers.csv downloaded successfully!');
+    } catch (e) {
+      console.error('Failed to export CSV:', e);
     }
   };
 
